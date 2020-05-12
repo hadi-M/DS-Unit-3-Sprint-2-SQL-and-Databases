@@ -6,29 +6,29 @@ import os
 from pdb import set_trace as st
 
 # Read sqlite query results into a pandas DataFrame
-# os.join.path()
 os.chdir(
 	os.path.dirname(
 		os.path.abspath(__file__)
 		)
 	)
-con = sqlite3.connect("./buddymove_holidayiq.sqlite3")
+
+con = None
+# if db file is not already filled with data, fill it:
 if "buddymove_holidayiq.sqlite3" not in os.listdir():
-    pd.read_csv("./buddymove_holidayiq.csv").to_sql("review", con=con)
+	con = sqlite3.connect("./buddymove_holidayiq.sqlite3")
+	pd.read_csv("./buddymove_holidayiq.csv").to_sql("review", con=con)
+
+else:
+	con = sqlite3.connect("./buddymove_holidayiq.sqlite3")
 
 
 def query_display(query_file_name):
 	query_string = ""
-	# query_file_path = os.path.join(
-	# 	os.path.dirname(__file__),
-	# 	"queries",
-	# 	"part2",
-	# 	"{}.sql".format(query_file_name)
-	# )
-	# st()
 	query_file_path = ("./queries/part2/{}.sql".format(query_file_name))
+
 	with open(query_file_path) as temp_file:
 		query_string = temp_file.read()
+
 	df = pd.read_sql_query(query_string, con)
 	print(
 		query_file_name + ":",
