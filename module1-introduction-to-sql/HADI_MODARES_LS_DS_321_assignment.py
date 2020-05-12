@@ -1,3 +1,5 @@
+# %%<~~~~---- IMPORTS ----~~~~> %% #
+
 import pandas as pd
 import sqlite3
 import os
@@ -8,17 +10,37 @@ from pdb import set_trace as st
 con = sqlite3.connect("./rpg_db.sqlite3")
 
 
+def query_display(query_file_name):
+	query_string = ""
+	with open("./queries/{}.sql".format(query_file_name)) as temp_file:
+		query_string = temp_file.read()
+
+	df = pd.read_sql_query(query_string, con)
+	print(
+		query_file_name + ":",
+		df.head(),
+		sep="\n",
+		end="\n"+"-"*20+"\n\n"
+	)
+
+	return df
+
+
+# %%$$&& <~~~~---- Q1 ----~~~~> &&$$%% #
 # How many total Characters are there? 302
-q1 = """
-select
-count(distinct character_id) as "total_unique_character"
-from
-charactercreator_character
-"""
+query_display("q1")
 
-df1 = pd.read_sql_query(q1, con)
+# %%$$&& <~~~~---- Q2 ----~~~~> &&$$%% #
+# How many of each specific subclass?
+query_display("q2")
 
-# Verify that result of SQL query is stored in the dataframe
-print(df1.head())
+# %%$$&& <~~~~---- Q3 ----~~~~> &&$$%% #
+# How many total Items? 898
+query_display("q3")
 
+# %%$$&& <~~~~---- Q4 ----~~~~> &&$$%% #
+# How many of the Items are weapons? How many are not?
+query_display("q4")
+
+# %%
 con.close()
