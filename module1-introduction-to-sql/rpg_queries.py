@@ -16,7 +16,7 @@ con = sqlite3.connect("./rpg_db.sqlite3")
 
 def query_display(query_file_name):
 	query_string = ""
-	query_file_path = ("./queries/part2/{}.sql".format(query_file_name))
+	query_file_path = ("./queries/part1/{}.sql".format(query_file_name))
 
 	with open(query_file_path) as temp_file:
 		query_string = temp_file.read()
