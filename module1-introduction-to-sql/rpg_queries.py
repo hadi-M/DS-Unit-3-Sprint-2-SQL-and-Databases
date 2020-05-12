@@ -12,7 +12,7 @@ con = sqlite3.connect("./rpg_db.sqlite3")
 
 def query_display(query_file_name):
 	query_string = ""
-	with open("./queries/{}.sql".format(query_file_name)) as temp_file:
+	with open("./queries/part1/{}.sql".format(query_file_name)) as temp_file:
 		query_string = temp_file.read()
 
 	df = pd.read_sql_query(query_string, con)
