@@ -1,1 +1,4 @@
-select * from review
+SELECT
+    count(*) as "number_of_rows"
+FROM
+    review
