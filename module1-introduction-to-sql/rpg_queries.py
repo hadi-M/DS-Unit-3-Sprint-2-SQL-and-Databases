@@ -18,7 +18,7 @@ def query_display(query_file_name):
 	df = pd.read_sql_query(query_string, con)
 	print(
 		query_file_name + ":",
-		df.head(),
+		df,
 		sep="\n",
 		end="\n"+"-"*20+"\n\n"
 	)
@@ -41,6 +41,22 @@ query_display("q3")
 # %%$$&& <~~~~---- Q4 ----~~~~> &&$$%% #
 # How many of the Items are weapons? How many are not?
 query_display("q4")
+
+# %%$$&& <~~~~---- Q5 ----~~~~> &&$$%% #
+# How many Items does each character have? (Return first 20 rows)
+query_display("q5")
+
+# %%$$&& <~~~~---- Q6 ----~~~~> &&$$%% #
+# How many Weapons does each character have? (Return first 20 rows)
+query_display("q6")
+
+# %%$$&& <~~~~---- Q7 ----~~~~> &&$$%% #
+# On average, how many Items does each Character have?
+query_display("q7")
+
+# %%$$&& <~~~~---- Q8 ----~~~~> &&$$%% #
+# On average, how many Weapons does each character have?
+query_display("q8")
 
 # %%
 con.close()
