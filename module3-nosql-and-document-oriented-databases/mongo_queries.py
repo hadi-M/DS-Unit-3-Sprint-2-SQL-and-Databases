@@ -4,6 +4,7 @@ import pymongo
 import os
 from dotenv import load_dotenv
 from pdb import set_trace as st
+import pandas as pd
 
 load_dotenv()
 
@@ -15,7 +16,7 @@ connection_uri = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{CLUSTER_NAME}.mongodb.
 print("----------------")
 print("URI:", connection_uri)
 
-st()
+# st()
 
 client = pymongo.MongoClient(connection_uri)
 print("----------------")
@@ -25,7 +26,7 @@ db = client.test_database # "test_database" or whatever you want to call it
 print("----------------")
 print("DB:", type(db), db)
 
-collection = db.pokemon_test # "pokemon_test" or whatever you want to call it
+collection = db.titanic1 # "pokemon_test" or whatever you want to call it
 print("----------------")
 print("COLLECTION:", type(collection), collection)
 
@@ -33,11 +34,7 @@ print("----------------")
 print("COLLECTIONS:")
 print(db.list_collection_names())
 
-collection.insert_one({
-    "name": "Pikachu",
-    "level": 30,
-    "exp": 76000000000,
-    "hp": 400,
-})
-print("DOCS:", collection.count_documents({}))
-print(collection.count_documents({"name": "Pikachu"}))
+df = pd.read_csv("./titanic.csv")
+collection.insert_many(df.to_dict(orient='records'))
+# print("DOCS:", collection.count_documents({}))
+# print(collection.count_documents({"name": "Pikachu"}))

@@ -17,4 +17,4 @@ engine = create_engine(postgres_url, echo=False)
 
 df = pd.read_csv("./titanic.csv")
 df["Survived"] = df["Survived"].astype("boolean")
-df.to_sql(name='titanic_temp2', con=engine, if_exists='replace', index=False, method='multi')
+df.to_sql(name='titanic', con=engine, if_exists='replace', index=False, method='multi')
