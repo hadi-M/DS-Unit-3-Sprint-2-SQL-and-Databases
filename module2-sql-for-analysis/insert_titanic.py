@@ -16,5 +16,5 @@ postgres_url = r'postgresql://{}:{}@{}:5432/{}'.format(DB_USER, DB_PASSWORD, DB_
 engine = create_engine(postgres_url, echo=False)
 
 df = pd.read_csv("./titanic.csv")
-df["Survived"] = df["Survived"].astype("boolean")
+# df["Survived"] = df["Survived"].astype("boolean")
 df.to_sql(name='titanic', con=engine, if_exists='replace', index=False, method='multi')

@@ -1,4 +1,3 @@
-"mongodb+srv://user123:<password>@cluster0-iaegt.mongodb.net/test?retryWrites=true&w=majority"
 
 import pymongo
 import os
