@@ -6,11 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-pymongo = "*"
 dnspython = "*"
 dotenv = "*"
 python-dotenv = "*"
 pandas = "*"
+pymongo = "*"
 
 [requires]
 python_version = "3.6"
